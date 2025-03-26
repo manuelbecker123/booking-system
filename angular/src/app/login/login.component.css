@@ -1,0 +1,54 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    }
+    
+    .custom-bg {
+        background-image: url('/assets/img/architecture-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* Optional: Keeps the background fixed when scrolling */
+    }
+
+    .custom-btn {
+        padding: 10px 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+    
+    .custom-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-login {
+        background-color: #6c757d; /* Secondary Color */
+        color: white;
+    }
+    
+    .btn-login:hover {
+        background-color: #5a6268;
+    }
+    
+    .btn-register {
+        background-color: #adb5bd; /* Lighter Secondary */
+        color: white;
+    }
+    
+    .btn-register:hover {
+        background-color: #8d949c;
+    }
+    
+    

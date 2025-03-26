@@ -1,0 +1,159 @@
+<section class="meeting-section py-5 custom-bg">
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-9"> 
+                
+                <!-- ✅ Bootstrap Card -->
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-body p-4">
+                        
+                        <h2 class="text-center mb-4">Schedule a Meeting</h2>
+
+                        <!-- ✅ Form inside the Card -->
+                        <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()">
+                            
+                            <!-- ✅ Date Picker -->
+                            <div class="form-group mb-3">
+                                <label>Select Date:</label>
+                                <input id="meetingDate" type="date" formControlName="meetingDate" class="form-control" (change)="fetchAvailableSlots()">
+                            </div>
+
+                            <!-- ✅ Time Slot Picker -->
+                            <div class="form-group mb-3">
+                                <label>Select Time Slot:</label>
+                                <select id="startTime" formControlName="startTime" class="form-control">
+                                    <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option>
+                                </select>
+                            </div>
+
+                            <!-- ✅ Meeting Title -->
+                            <div class="form-group mb-3">
+                                <input id="title" type="text" formControlName="title" class="form-control" placeholder="Meeting Title" required>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <input  id="numPeople" type="number" formControlName="numPeople" class="form-control" placeholder="Number of People" required min="1">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <textarea id="description" formControlName="description" class="form-control" placeholder="Meeting Description"></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label>Duration:</label>
+                                <select id="duration" formControlName="duration" class="form-control">
+                                    <option value="30m">30 Minutes</option>
+                                    <option value="1hr">1 Hour</option>
+                                    <option value="1.5hr">1.5 Hours</option>
+                                </select>
+                            </div>
+
+                            <div class="text-center">
+                                <button id="submitBtn" class="btn btn-primary w-50" type="submit" [disabled]="meetingForm.invalid">Book Meeting</button>
+                            </div>
+
+                            <div id="successMessage" *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+                            <div id="errorMessage"*ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ✅ End Bootstrap Card -->
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-10">
+          <h4>Your Scheduled Meetings</h4>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th># People</th>
+                <th>Description</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let meeting of userMeetings">
+                    <!-- Title -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.title }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <input [(ngModel)]="meeting.editData.title" class="form-control" id="title-{{ meeting.id }}" />
+                    </td>
+                  
+                    <!-- Date -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.date_time | date: 'yyyy-MM-dd' }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <input [(ngModel)]="meeting.editData.meetingDate" type="date" class="form-control" id="date-{{ meeting.id }}" />
+                    </td>
+                  
+                    <!-- Time -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.date_time | date: 'shortTime' }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <input [(ngModel)]="meeting.editData.startTime" type="time" class="form-control" id="startTime-{{ meeting.id }}" />
+                    </td>
+                  
+                    <!-- Duration -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.duration }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <select [(ngModel)]="meeting.editData.duration" class="form-control" id="duration-{{ meeting.id }}">
+                        <option value="30m">30 Minutes</option>
+                        <option value="1hr">1 Hour</option>
+                        <option value="1.5hr">1.5 Hours</option>
+                      </select>
+                    </td>
+                  
+                    <!-- Num People -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.num_people }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <input [(ngModel)]="meeting.editData.numPeople" type="number" class="form-control" id="numPeople-{{ meeting.id }}"  min="1" />
+                    </td>
+                  
+                    <!-- Description -->
+                    <td *ngIf="editingMeetingId !== meeting.id">{{ meeting.description }}</td>
+                    <td *ngIf="editingMeetingId === meeting.id">
+                      <input [(ngModel)]="meeting.editData.description" class="form-control"  id="description-{{ meeting.id }}"/>
+                    </td>
+                  
+                    <!-- Actions -->
+                    <td>
+                      <button *ngIf="editingMeetingId !== meeting.id"
+                              class="btn btn-sm btn-warning"
+                              (click)="startEditing(meeting)"
+                              id="editBtn-{{ meeting.id }}">
+                              
+                        Edit
+                      </button>
+                  
+                      <button *ngIf="editingMeetingId === meeting.id"
+                              class="btn btn-sm btn-success me-2"
+                              (click)="saveChanges(meeting)"
+                              id="saveBtn-{{ meeting.id }}">
+                        Save
+                      </button>
+                      <button *ngIf="editingMeetingId === meeting.id"
+                              class="btn btn-sm btn-secondary"
+                              (click)="cancelEditing()"
+                              id="cancelBtn-{{ meeting.id }}">
+                        Cancel
+                      </button> 
+
+                      
+<button *ngIf="editingMeetingId !== meeting.id" class="btn btn-sm btn-danger" (click)="deleteMeeting(meeting.id)" id="deleteBtn-{{ meeting.id }}">Delete</button>
+                    </td>
+                  </tr>
+                  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+</section>

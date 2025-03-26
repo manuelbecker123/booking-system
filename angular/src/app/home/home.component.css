@@ -1,0 +1,8 @@
+.custom-bg {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)), 
+                url('/assets/img/architecture-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: Keeps background fixed when scrolling */
+}

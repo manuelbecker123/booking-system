@@ -1,0 +1,104 @@
+<header class="masthead custom-bg">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class="mx-auto my-0 text-uppercase" >Henna Solutions</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">Welcome to Henna Solutions – where innovation meets architecture to create timeless, functional, and inspiring spaces</h2>
+                <a class="btn btn-primary" href="#about">Get Started</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- About-->
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">Where perfection happens</h2>
+                <p class="text-white-50">
+                    Henna Solutions is a leading architectural firm dedicated to designing innovative, functional, and sustainable spaces. We specialize in creating structures that blend aesthetics with practicality, ensuring every project reflects our commitment to excellence and client satisfaction. From modern residential designs to cutting-edge commercial spaces, we bring visionary ideas to life with precision and creativity. Let us transform your vision into reality with our expertise in architecture and design.
+                </p>
+            </div>
+        </div>
+        <img class="img-fluid" src="assets/img/ipad1.jpg" alt="..." />
+    </div>
+</section>
+<!-- Projects-->
+<section class="projects-section bg-light" id="projects">
+    <div class="container px-4 px-lg-5">
+        <!-- Featured Project Row-->
+        <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+            <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/architecture-bg.jpg" alt="..." /></div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="featured-text text-center text-lg-left">
+                    <h4>Compliance</h4>
+                    <p class="text-black-50 mb-0">Henna Solutions is MIT licensed and conforms to all regulatory compliances in the US and Europe. This means you can use it for any project - even commercial projects!</p>
+                </div>
+            </div>
+        </div>
+        <!-- Project One Row-->
+        <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+            <div class="col-lg-6"><img style="max-height: 400px; width: 525px;" class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
+            <div class="col-lg-6">
+                <div class="bg-black text-center h-100 project">
+                    <div class="d-flex h-100">
+                        <div class="project-text w-100 my-auto text-center text-lg-left">
+                            <h4 class="text-white">Design</h4>
+                            <p class="mb-0 text-white-50">At Henna Solutions, we offer a comprehensive range of architectural services tailored to meet the unique needs of our clients. Our concept-to-completion design approach ensures that every project is meticulously planned, from initial sketches to final execution. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project Two Row-->
+        <div class="row gx-0 justify-content-center">
+            <div class="col-lg-6"><img class="img-fluid" src="assets/img/standards.jpg" alt="..." /></div>
+            <div class="col-lg-6 order-lg-first">
+                <div class="bg-black text-center h-100 project">
+                    <div class="d-flex h-100">
+                        <div class="project-text w-100 my-auto text-center text-lg-right">
+                            <h4 class="text-white">Management</h4>
+                            <p class="mb-0 text-white-50">In addition to architectural design, Henna Solutions provides expert project management and consultation services to guide clients through every stage of construction. We handle everything from site analysis and feasibility studies to building permits and compliance with local regulations, ensuring a seamless process. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Signup-->
+<section class="signup-section" id="signup">
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5">
+        <div class="col-md-10 col-lg-8 mx-auto text-center">
+          <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
+          <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+  
+          <!-- Angular Controlled Form -->
+          <form (ngSubmit)="onSubscribe()">
+            <div class="row input-group-newsletter">
+              <div class="col">
+                <input
+                id="subscribe"
+                  class="form-control"
+                  type="email"
+                  placeholder="Enter email address..."
+                  [(ngModel)]="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div class="col-auto">
+                <button id="submitSubscribe"class="btn btn-primary" type="submit">Notify Me!</button>
+              </div>
+            </div>
+          </form>
+  
+          <!-- Messages -->
+          <div id ="successMessage" *ngIf="successMessage" class="text-success mt-3">{{ successMessage }}</div>
+          <div id ="errorMessage" *ngIf="errorMessage" class="text-danger mt-3">{{ errorMessage }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

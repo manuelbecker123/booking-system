@@ -1,0 +1,21 @@
+# Node modules (for Angular)
+node_modules/
+
+# Build output (Angular)
+dist/
+build/
+
+# Java / BDD build directories
+target/
+
+# IDE files (Eclipse, IntelliJ, etc.)
+.idea/
+.vscode/
+*.iml
+
+# OS files (Mac, Windows)
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
